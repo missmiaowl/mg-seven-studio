@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MG-SEVEN STUDIO · 全能音乐人训练营 · 招生中</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --purple:#c084fc;
+  --purple-dim:rgba(192,132,252,.15);
+  --purple-border:rgba(192,132,252,.25);
+  --blue:#7dd3fc;
+  --pink:#f9a8d4;
+  --green:#6ee7b7;
+  --bg:#09090f;
+  --bg2:#0e0e16;
+  --bg3:#13131c;
+  --text:#f0eaff;
+  --text-muted:rgba(240,234,255,.5);
+  --text-dim:rgba(240,234,255,.3);
+  --border:rgba(255,255,255,.07);
+}
+
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;line-height:1.6;overflow-x:hidden}
+
+/* ── UTILS ── */
+.serif{font-family:'Noto Serif SC',serif}
+.purple{color:var(--purple)}
+.muted{color:var(--text-muted)}
+.dim{color:var(--text-dim)}
+em{color:var(--purple);font-style:normal}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 48px;
+  background:rgba(9,9,15,.85);
+  backdrop-filter:blur(12px);
+  border-bottom:.5px solid var(--border);
+}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-logo{width:34px;height:34px;border-radius:9px;background:#1a0a2e;border:1px solid var(--purple-border);display:flex;align-items:center;justify-content:center}
+.nav-name{font-family:'Noto Serif SC',serif;font-size:16px;color:var(--text);letter-spacing:.08em}
+.nav-cta{
+  background:var(--purple-dim);border:1px solid var(--purple-border);
+  color:var(--purple);font-size:13px;padding:8px 20px;
+  border-radius:100px;cursor:pointer;text-decoration:none;
+  transition:background .2s;
+}
+.nav-cta:hover{background:rgba(192,132,252,.25)}
+
+/* ── SECTIONS ── */
+section{padding:100px 48px}
+.inner{max-width:900px;margin:0 auto}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  position:relative;overflow:hidden;
+  padding:0 48px;
+}
+.hero-glow{
+  position:absolute;top:-20%;right:-10%;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(192,132,252,.1) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-glow2{
+  position:absolute;bottom:-20%;left:-10%;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(96,165,250,.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:2}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--purple);
+  background:var(--purple-dim);border:.5px solid var(--purple-border);
+  padding:6px 16px;border-radius:100px;margin-bottom:28px;
+}
+.hero-dot{width:5px;height:5px;border-radius:50%;background:var(--purple);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-title{
+  font-family:'Noto Serif SC',serif;
+  font-size:clamp(36px,6vw,64px);
+  font-weight:700;line-height:1.2;
+  color:var(--text);letter-spacing:.03em;
+  margin-bottom:20px;
+}
+.hero-title span{color:var(--purple)}
+.hero-sub{
+  font-size:17px;color:var(--text-muted);
+  line-height:1.85;max-width:520px;margin-bottom:40px;
+}
+.hero-sub strong{color:var(--text)}
+.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.btn-primary{
+  background:var(--purple);color:#1a0a2e;
+  font-size:15px;font-weight:600;padding:14px 32px;
+  border-radius:100px;cursor:pointer;border:none;
+  text-decoration:none;display:inline-block;
+  transition:opacity .2s,transform .15s;letter-spacing:.04em;
+}
+.btn-primary:hover{opacity:.88;transform:translateY(-1px)}
+.btn-ghost{
+  border:.5px solid rgba(240,234,255,.25);
+  color:var(--text-muted);font-size:14px;padding:13px 28px;
+  border-radius:100px;cursor:pointer;background:none;
+  text-decoration:none;display:inline-block;
+  transition:border-color .2s,color .2s;
+}
+.btn-ghost:hover{border-color:var(--purple);color:var(--purple)}
+.hero-meta{display:flex;align-items:center;gap:24px;margin-top:40px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-num{font-family:'Noto Serif SC',serif;font-size:24px;font-weight:600;color:var(--purple);display:block}
+.hero-stat-label{font-size:11px;color:var(--text-dim);letter-spacing:.06em}
+.hero-divider{width:.5px;height:32px;background:var(--border)}
+
+/* ── PAIN ── */
+.pain{background:var(--bg2)}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.pain-card{
+  background:rgba(255,255,255,.02);border:.5px solid var(--border);
+  border-radius:14px;padding:22px;
+}
+.pain-icon{font-size:22px;margin-bottom:12px}
+.pain-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:6px}
+.pain-desc{font-size:12px;color:var(--text-muted);line-height:1.75}
+.pain-strike{text-decoration:line-through;color:var(--text-dim)}
+.pain-arrow{color:var(--purple);margin:0 6px}
+
+/* ── WHO ── */
+.who-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:40px}
+.teacher-card{
+  background:var(--bg3);border:.5px solid var(--purple-border);
+  border-radius:20px;padding:36px;
+  position:relative;overflow:hidden;
+}
+.teacher-card-glow{
+  position:absolute;top:-40px;right:-40px;
+  width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,rgba(192,132,252,.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.teacher-avatar-wrap{display:flex;align-items:center;gap:16px;margin-bottom:24px;position:relative;z-index:2}
+.teacher-avatar{
+  width:60px;height:60px;border-radius:50%;
+  border:2px solid var(--purple-border);
+  background:#1a0a2e;display:flex;align-items:center;justify-content:center;
+  font-family:'Noto Serif SC',serif;font-size:20px;color:var(--purple);font-weight:600;
+  flex-shrink:0;
+}
+.teacher-name{font-family:'Noto Serif SC',serif;font-size:20px;color:var(--text);margin-bottom:3px}
+.teacher-role{font-size:12px;color:var(--text-dim);letter-spacing:.04em}
+.teacher-quote{
+  font-size:14px;color:var(--text-muted);line-height:1.9;
+  font-style:italic;padding-left:16px;
+  border-left:2px solid var(--purple-border);
+  position:relative;z-index:2;margin-bottom:24px;
+}
+.teacher-tags{display:flex;flex-wrap:wrap;gap:7px;position:relative;z-index:2}
+.ttag{font-size:11px;padding:4px 12px;border-radius:100px;background:var(--purple-dim);border:.5px solid var(--purple-border);color:var(--purple)}
+.who-right{}
+.who-heading{font-family:'Noto Serif SC',serif;font-size:26px;color:var(--text);line-height:1.4;margin-bottom:20px}
+.who-list{display:flex;flex-direction:column;gap:14px}
+.who-item{display:flex;align-items:flex-start;gap:12px}
+.who-check{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--purple-dim);border:.5px solid var(--purple-border);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:1px;font-size:11px;color:var(--purple);
+}
+.who-text{font-size:14px;color:var(--text-muted);line-height:1.7}
+.who-text strong{color:var(--text)}
+
+/* ── CURRICULUM ── */
+.curriculum{background:var(--bg2)}
+.phases{display:flex;flex-direction:column;gap:14px;margin-top:40px}
+.phase{border-radius:14px;overflow:hidden;border:.5px solid var(--border);cursor:pointer}
+.phase-head{display:flex;align-items:center;gap:16px;padding:18px 24px}
+.phase-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0;font-family:'Noto Serif SC',serif}
+.phase-info{flex:1}
+.phase-name{font-size:15px;font-weight:500;color:var(--text);margin-bottom:2px}
+.phase-sub{font-size:12px;opacity:.5}
+.phase-week{font-size:11px;padding:3px 12px;border-radius:100px;border:.5px solid;flex-shrink:0}
+.phase-body{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(255,255,255,.05);
+  max-height:0;overflow:hidden;transition:max-height .35s ease;
+}
+.phase.open .phase-body{max-height:300px}
+.mod{padding:16px 18px;background:var(--bg)}
+.mod-name{font-size:12px;font-weight:500;color:var(--text);margin-bottom:7px}
+.mod-pts{list-style:none}
+.mod-pts li{font-size:11px;color:var(--text-muted);line-height:1.7;padding-left:9px;position:relative}
+.mod-pts li::before{content:'·';position:absolute;left:0;color:var(--purple)}
+.ph1 .phase-head{background:rgba(192,132,252,.07)}
+.ph1 .phase-num{background:rgba(192,132,252,.18);color:var(--purple)}
+.ph1 .phase-sub{color:var(--purple)}
+.ph1 .phase-week{border-color:rgba(192,132,252,.3);color:var(--purple)}
+.ph2 .phase-head{background:rgba(96,165,250,.07)}
+.ph2 .phase-num{background:rgba(96,165,250,.18);color:var(--blue)}
+.ph2 .phase-sub{color:var(--blue)}
+.ph2 .phase-week{border-color:rgba(96,165,250,.3);color:var(--blue)}
+.ph3 .phase-head{background:rgba(244,114,182,.07)}
+.ph3 .phase-num{background:rgba(244,114,182,.18);color:var(--pink)}
+.ph3 .phase-sub{color:var(--pink)}
+.ph3 .phase-week{border-color:rgba(244,114,182,.3);color:var(--pink)}
+.ph4 .phase-head{background:rgba(110,231,183,.07)}
+.ph4 .phase-num{background:rgba(110,231,183,.18);color:var(--green)}
+.ph4 .phase-sub{color:var(--green)}
+.ph4 .phase-week{border-color:rgba(110,231,183,.3);color:var(--green)}
+.phase-toggle{font-size:18px;color:var(--text-dim);transition:transform .3s;flex-shrink:0}
+.phase.open .phase-toggle{transform:rotate(45deg)}
+
+/* ── HOW ── */
+.how-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px}
+.how-card{background:var(--bg3);border:.5px solid var(--border);border-radius:14px;padding:24px}
+.how-num{font-family:'Noto Serif SC',serif;font-size:32px;font-weight:600;color:rgba(192,132,252,.2);margin-bottom:10px}
+.how-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:7px}
+.how-desc{font-size:13px;color:var(--text-muted);line-height:1.75}
+
+/* ── TESTIMONIALS ── */
+.testimonials{background:var(--bg2)}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.t-card{background:var(--bg3);border:.5px solid var(--border);border-radius:14px;padding:22px}
+.t-stars{color:var(--purple);font-size:13px;margin-bottom:12px;letter-spacing:2px}
+.t-text{font-size:13px;color:var(--text-muted);line-height:1.8;font-style:italic;margin-bottom:14px}
+.t-author{display:flex;align-items:center;gap:10px}
+.t-avatar{width:32px;height:32px;border-radius:50%;background:var(--purple-dim);border:.5px solid var(--purple-border);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--purple);font-weight:500}
+.t-name{font-size:12px;color:var(--text);font-weight:500}
+.t-meta{font-size:11px;color:var(--text-dim)}
+
+/* ── FAQ ── */
+.faq-list{display:flex;flex-direction:column;gap:10px;margin-top:40px}
+.faq-item{background:var(--bg3);border:.5px solid var(--border);border-radius:12px;overflow:hidden}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;cursor:pointer;font-size:14px;color:var(--text);font-weight:500}
+.faq-icon{color:var(--text-dim);font-size:18px;transition:transform .3s}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{font-size:13px;color:var(--text-muted);line-height:1.8;padding:0 22px 18px;max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-item.open .faq-a{max-height:200px}
+
+/* ── CTA FINAL ── */
+.cta-final{
+  text-align:center;
+  background:linear-gradient(180deg,var(--bg) 0%,rgba(192,132,252,.06) 50%,var(--bg) 100%);
+  position:relative;overflow:hidden;
+}
+.cta-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:500px;height:300px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(192,132,252,.1) 0%,transparent 70%);
+  pointer-events:none;
+}
+.cta-inner{position:relative;z-index:2}
+.cta-title{font-family:'Noto Serif SC',serif;font-size:clamp(26px,4vw,42px);font-weight:600;color:var(--text);margin-bottom:14px}
+.cta-sub{font-size:15px;color:var(--text-muted);margin-bottom:36px;line-height:1.8}
+.cta-badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:36px}
+.cbadge{font-size:12px;padding:6px 16px;border-radius:100px;background:rgba(255,255,255,.04);border:.5px solid var(--border);color:var(--text-muted)}
+
+/* ── FOOTER ── */
+footer{
+  text-align:center;padding:32px 48px;
+  border-top:.5px solid var(--border);
+  background:var(--bg);
+}
+.footer-brand{font-family:'Noto Serif SC',serif;font-size:15px;color:rgba(240,234,255,.3);letter-spacing:.1em}
+.footer-sub{font-size:11px;color:var(--text-dim);margin-top:4px}
+
+/* ── SECTION HEADERS ── */
+.sec-eyebrow{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--purple);opacity:.7;margin-bottom:10px}
+.sec-title{font-family:'Noto Serif SC',serif;font-size:clamp(24px,3.5vw,34px);font-weight:600;color:var(--text);margin-bottom:10px}
+.sec-desc{font-size:14px;color:var(--text-muted);line-height:1.8;max-width:480px}
+
+@media(max-width:700px){
+  nav{padding:14px 20px}
+  section{padding:72px 20px}
+  .hero{padding:0 20px}
+  .pain-grid,.who-wrap,.how-grid,.t-grid{grid-template-columns:1fr}
+  .phase-body{grid-template-columns:1fr}
+  .hero-meta{gap:16px}
+  .hero-divider{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="10" cy="10" r="9" fill="rgba(192,132,252,.12)" stroke="rgba(192,132,252,.55)" stroke-width="0.8"/>
+  <text x="10" y="14" text-anchor="middle" font-family="serif" font-size="10" font-weight="700" fill="rgba(192,132,252,.9)">M</text>
+</svg>
+    </div>
+    <span class="nav-name">MG-SEVEN STUDIO</span>
+  </div>
+  <a href="weixin://contacts/profile/18136061157" class="nav-cta" onclick="alert('请添加助理微信：18136061157 预约体验课 🎙');return false;">立即报名咨询 →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="hero-dot"></span>全能音乐人训练营 · 招生中</div>
+    <h1 class="hero-title">
+      不逼你飙高音<br>
+      <span>帮你找回声音</span><br>本来的美
+    </h1>
+    <p class="hero-sub">
+      科学发声 × 流行经典曲目 × 声线审美重塑<br>
+      <strong>零基础成人专属</strong>，20 周从开不了口到唱出自己的味道
+    </p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary" onclick="document.getElementById('wechat-modal').style.display='flex';return false;">体验一节课</a>
+      <a href="#curriculum" class="btn-ghost">查看课程体系 ↓</a>
+    </div>
+    
+  </div>
+</div>
+
+<!-- PAIN POINTS -->
+<section class="pain">
+  <div class="inner">
+    <p class="sec-eyebrow">你是不是也有这些困扰</p>
+    <h2 class="sec-title">学了很久，还是唱不好？</h2>
+    <p class="sec-desc">不是你的问题，是方法错了。这些困扰，在MG-SEVEN STUDIO都有解法。</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">😮‍💨</div>
+        <div class="pain-title"><span class="pain-strike">唱高音就破音、漏气</span></div>
+        <div class="pain-desc">→ 不是音域不够，是<em>气息支撑和换声点</em>没建立好</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">😶</div>
+        <div class="pain-title"><span class="pain-strike">唱歌没感情、很平</span></div>
+        <div class="pain-desc">→ 不是缺乏天赋，是<em>动态控制和情感代入</em>需要训练</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🫤</div>
+        <div class="pain-title"><span class="pain-strike">声音没有辨识度</span></div>
+        <div class="pain-desc">→ 不需要模仿别人，<em>找到你原本声音的特质</em>才是正路</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IS 77 -->
+<section>
+  <div class="inner">
+    <p class="sec-eyebrow">关于老师</p>
+    <h2 class="sec-title">秦柒柒 MIA · 77老师</h2>
+    <p class="sec-desc">独立音乐人 · 流行声乐导师 · MG-SEVEN STUDIO 主理人</p>
+
+    <div class="who-wrap" style="margin-top:36px;">
+      <!-- 左侧：头像卡 -->
+      <div class="teacher-card">
+        <div class="teacher-card-glow"></div>
+        <div class="teacher-avatar-wrap">
+          <div class="teacher-avatar">MIA</div>
+          <div>
+            <div class="teacher-name">秦柒柒 MIA</div>
+            <div class="teacher-role">77老师 · MG-SEVEN STUDIO 主理人</div>
+          </div>
+        </div>
+        <p class="teacher-quote">
+          「每个人的声音都有它原本的样子，<br>我只是帮你把它找出来。<br>不是教你唱得"对"，是教你唱得像你自己。」
+        </p>
+        <div class="teacher-tags">
+          <span class="ttag">独立音乐人</span>
+          <span class="ttag">流行声乐导师</span>
+          <span class="ttag">音乐制作人</span>
+          <span class="ttag">Berklee 认证</span>
+          <span class="ttag">国家高级教师资格</span>
+        </div>
+      </div>
+
+      <!-- 右侧：教学理念 -->
+      <div class="who-right">
+        <h2 class="who-heading">为什么选择<br><em>MG-SEVEN STUDIO</em>？</h2>
+        <div class="who-list">
+          <div class="who-item">
+            <div class="who-check">✦</div>
+            <div class="who-text"><strong>尊重本声，科学发声</strong><br>不走传统声乐"越高越好"的老路，帮你找到适合自己音域的演唱方式，声音更自然、更有你的色彩。</div>
+          </div>
+          <div class="who-item">
+            <div class="who-check">✦</div>
+            <div class="who-text"><strong>流行曲驱动，学了就能唱</strong><br>结合当下流行经典曲目，技术练习和歌曲演绎同步进行，不枯燥，每节课都有成就感。</div>
+          </div>
+          <div class="who-item">
+            <div class="who-check">✦</div>
+            <div class="who-text"><strong>全能培养，从技术到舞台</strong><br>从气息发声到情感表达、舞台表现、录音技巧，帮你成为真正的全能音乐人。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="curriculum" id="curriculum">
+  <div class="inner">
+    <p class="sec-eyebrow">课程体系</p>
+    <h2 class="sec-title">全能音乐人训练营</h2>
+    <p class="sec-desc">三个级别，30 周完整周期，10 周起报，点击每个 Level 查看详细模块。</p>
+    <div class="phases">
+
+        <!-- LEVEL 1 -->
+        <div class="phase ph1 open" onclick="togglePhase(this)">
+          <div class="phase-head">
+            <div class="phase-num" style="font-size:10px;font-weight:700;">L1</div>
+            <div class="phase-info">
+              <div class="phase-name">音乐新秀 · Level 1</div>
+              <div class="phase-sub">流行演唱技巧课 · Pop Singing Techniques</div>
+            </div>
+            <div class="phase-week">10周 · 每节45分钟</div>
+            <div class="phase-toggle">+</div>
+          </div>
+          <div class="phase-body">
+            <div class="mod"><div class="mod-name">声音基础</div><ul class="mod-pts">
+              <li>声音的奥秘：科学用嗓</li>
+              <li>演唱的呼吸与气息运用</li>
+              <li>声音的科学基础练声</li>
+              <li>唇颤音在歌曲中的运用</li>
+              <li>让共鸣改善声音·哼唱技巧</li>
+            </ul></div>
+            <div class="mod"><div class="mod-name">音域训练</div><ul class="mod-pts">
+              <li>挑战音域·中低音高音训练指南</li>
+              <li>高音发声艺术运用技巧</li>
+            </ul></div>
+            <div class="mod"><div class="mod-name">表达与养护</div><ul class="mod-pts">
+              <li>演唱歌曲中情感表达的奥秘</li>
+              <li>学会声体共塑与保养嗓音</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <!-- LEVEL 2 -->
+        <div class="phase ph2" onclick="togglePhase(this)">
+          <div class="phase-head">
+            <div class="phase-num" style="font-size:10px;font-weight:700;">L2</div>
+            <div class="phase-info">
+              <div class="phase-name">音乐达人 · Level 2</div>
+              <div class="phase-sub">声音塑造进阶课 · Developing Your Sound</div>
+            </div>
+            <div class="phase-week">10周 · 每节45分钟</div>
+            <div class="phase-toggle">+</div>
+          </div>
+          <div class="phase-body">
+            <div class="mod"><div class="mod-name">演唱进阶</div><ul class="mod-pts">
+              <li>如何快速学好一首歌</li>
+              <li>制定有效的练声程序</li>
+              <li>真假音自由转换</li>
+              <li>咬字进阶训练</li>
+            </ul></div>
+            <div class="mod"><div class="mod-name">技巧深化</div><ul class="mod-pts">
+              <li>颤音与转音的运用</li>
+              <li>歌曲鉴赏与音乐分析</li>
+              <li>当代流行演唱风格</li>
+              <li>演唱的心态调整与突破</li>
+            </ul></div>
+            <div class="mod"><div class="mod-name">舞台与录音</div><ul class="mod-pts">
+              <li>舞台表演与自信训练</li>
+              <li>如何建立宅家录音</li>
+            </ul></div>
+          </div>
+        </div>
+
+        <!-- LEVEL 3 -->
+        <div class="phase ph3" onclick="togglePhase(this)">
+          <div class="phase-head">
+            <div class="phase-num" style="font-size:10px;font-weight:700;">L3</div>
+            <div class="phase-info">
+              <div class="phase-name">音乐巨星 · Level 3</div>
+              <div class="phase-sub">职业歌手高阶课 · Professional Singer</div>
+            </div>
+            <div class="phase-week">10周 · 每节45分钟</div>
+            <div class="phase-toggle">+</div>
+          </div>
+          <div class="phase-body">
+            <div class="mod"><div class="mod-name">高级技术</div><ul class="mod-pts">
+              <li>高级呼吸与气息控制</li>
+              <li>声音表现力训练</li>
+              <li>唱法深入解析</li>
+              <li>提升共鸣与音色塑造</li>
+              <li>掌握复杂的音程与技巧</li>
+            </ul></div>
+            <div class="mod"><div class="mod-name">演绎与创作</div><ul class="mod-pts">
+              <li>情感融入歌曲演绎</li>
+              <li>创意演绎与即兴能力</li>
+              <li>录音室技巧与音频处理</li>
+            </ul></div>
+            <div class="mod"><div class="mod-name">职业发展</div><ul class="mod-pts">
+              <li>职业化的演出准备</li>
+              <li>艺术家形象塑造技巧</li>
+            </ul></div>
+          </div>
+        </div>
+
+      </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="inner">
+    <p class="sec-eyebrow">上课流程</p>
+    <h2 class="sec-title">怎么开始？</h2>
+    <p class="sec-desc">四步上手，简单清晰，没有门槛。</p>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-num">01</div>
+        <div class="how-title">声音诊断</div>
+        <div class="how-desc">发一段你的演唱录音，77老师会给你详细的声音评估，找出核心问题和改进方向。</div>
+      </div>
+      <div class="how-card">
+        <div class="how-num">02</div>
+        <div class="how-title">体验课 · 感受方法</div>
+        <div class="how-desc">一节 1 对 1 体验课（线上或线下均可），你会感受到科学发声方法和传统声乐课的不同，当堂就能看到变化。</div>
+      </div>
+      <div class="how-card">
+        <div class="how-num">03</div>
+        <div class="how-title">定制训练计划</div>
+        <div class="how-desc">根据你的音域、基础和目标，推荐从 Level 1、2 或 3 开始，每Level 10周，每周一节45分钟，选你喜欢的流行歌曲练习。</div>
+      </div>
+      <div class="how-card">
+        <div class="how-num">04</div>
+        <div class="how-title">系统学习 · 持续进步</div>
+        <div class="how-desc">每周课程 + 课后练习指导 + 录音反馈，77老师全程陪你，快速迭代突破你的演唱瓶颈。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="inner">
+    <p class="sec-eyebrow">学员反馈</p>
+    <h2 class="sec-title">他们这样说</h2>
+    <p class="sec-desc">真实学员的声音，是最好的证明。</p>
+    <div class="t-grid">
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">「学了三个月，朋友都说我的声音变了，不是变高了，是变好听了。77老师说的'找到自己声音'，我现在真的懂了。」</p>
+        <div class="t-author">
+          <div class="t-avatar">小</div>
+          <div><div class="t-name">小雨</div><div class="t-meta">零基础 · 学习 3 个月</div></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">「之前在别的地方学过，一直被要求练高音，练了半年也没进步。来MG-SEVEN STUDIO两个月，换声问题直接解决了，现在唱歌自信多了。」</p>
+        <div class="t-author">
+          <div class="t-avatar">明</div>
+          <div><div class="t-name">阿明</div><div class="t-meta">有基础 · 突破瓶颈</div></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">「77老师反馈很直接，不会说模糊的'再感情一点'，每次都能说清楚具体哪里、怎么改。进步很快，很值。」</p>
+        <div class="t-author">
+          <div class="t-avatar">晴</div>
+          <div><div class="t-name">晴晴</div><div class="t-meta">零基础 · 学习 5 个月</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="inner">
+    <p class="sec-eyebrow">常见问题</p>
+    <h2 class="sec-title">你可能想知道的</h2>
+    <div class="faq-list">
+      <div class="faq-item open" onclick="toggleFaq(this)">
+        <div class="faq-q">完全零基础可以报名吗？<span class="faq-icon">+</span></div>
+        <div class="faq-a">完全可以。MG-SEVEN STUDIO全能音乐人训练营就是为零基础成人设计的。我们从声音诊断开始，根据你当前的状态制定训练计划，不需要任何声乐基础。</div>
+      </div>
+      <div class="faq-item open" onclick="toggleFaq(this)">
+        <div class="faq-q">线下工作室在哪里？<span class="faq-icon">+</span></div>
+        <div class="faq-a">线下工作室位于 <strong>苏州市姑苏区南门路711号萌果音乐工作室</strong>，交通方便。欢迎苏州本地学员来工作室面授上课，外地学员可选择线上视频课程，效果完全一样。</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">课程是线上还是线下？<span class="faq-icon">+</span></div>
+        <div class="faq-a">线上线下均可，灵活选择。线下面授：苏州市姑苏区南门路711号萌果音乐工作室，1对1课程，沉浸式学习体验；线上课程：通过视频连线上课，随时录制回放，不受地域限制。两种方式效果一样好，根据你的情况选择即可。</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">20 周后真的能看到变化吗？<span class="faq-icon">+</span></div>
+        <div class="faq-a">是的。绝大多数学员在 4–6 周内就能感受到明显变化。20 周完整课程结束后，你将有完整的演唱作品集，并建立起属于自己的声音风格。</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">可以选自己喜欢的歌练吗？<span class="faq-icon">+</span></div>
+        <div class="faq-a">当然可以。我们会结合你喜欢的流行歌曲来进行技术训练，77老师会帮你分析这首歌的技术难点，制定针对性练习方案。</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">每周上几节课？每节课多长时间？<span class="faq-icon">+</span></div>
+        <div class="faq-a">每周一节课，每节课 45 分钟。课后77老师会提供练习指导，每天自主练习15–30分钟即可，不占用大量时间。</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">课程怎么报名？可以只报一个Level吗？<span class="faq-icon">+</span></div>
+        <div class="faq-a">可以从任意Level开始，最低10周起报。完成一个Level后可以继续升级报名下一Level。也可以直接报名全套30周课程，一次完成从音乐新秀到音乐巨星的完整进阶。</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final" id="cta">
+  <div class="cta-glow"></div>
+  <div class="inner cta-inner">
+    <p class="sec-eyebrow" style="text-align:center">现在开始</p>
+    <h2 class="cta-title">你的声音，<em>等你来找它</em>。</h2>
+    <p class="cta-sub">先来一节体验课，感受一下不一样的学唱歌方式。<br>。</p>
+    <div class="cta-badges">
+      <span class="cbadge">🎙 声音诊断</span>
+      <span class="cbadge">✦ 零基础友好</span>
+      <span class="cbadge">📍 线上线下均可</span>
+      <span class="cbadge">🐱 77老师亲授</span>
+    </div>
+    <a href="#" class="btn-primary" style="font-size:16px;padding:16px 40px" onclick="document.getElementById('wechat-modal').style.display='flex';return false;">预约体验课 →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">MG-SEVEN STUDIO · 77老师</div>
+  <div class="footer-sub">MG-SEVEN STUDIO · 全能音乐人训练营 · © 2026</div>
+</footer>
+
+<script>
+function togglePhase(el){
+  el.classList.toggle('open');
+}
+function toggleFaq(el){
+  el.classList.toggle('open');
+}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href').slice(1);
+    const t=document.getElementById(id);
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+</script>
+
+<!-- 微信弹窗 -->
+<div id="wechat-modal" style="
+  display:none;position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;
+" onclick="if(event.target===this)this.style.display='none'">
+  <div style="
+    background:#0e0e16;border:.5px solid rgba(192,132,252,.35);
+    border-radius:24px;padding:48px 40px;max-width:420px;width:90%;
+    text-align:center;position:relative;
+    box-shadow:0 0 80px rgba(192,132,252,.15);
+  ">
+    <!-- 关闭按钮 -->
+    <div onclick="document.getElementById('wechat-modal').style.display='none'" style="
+      position:absolute;top:18px;right:22px;
+      font-size:22px;color:rgba(240,234,255,.3);cursor:pointer;
+    ">✕</div>
+
+    <!-- 图标 -->
+    <div style="
+      width:72px;height:72px;border-radius:50%;
+      background:#1a0a2e;border:1.5px solid rgba(192,132,252,.5);
+      display:flex;align-items:center;justify-content:center;
+      margin:0 auto 20px;font-size:28px;
+    ">🎙</div>
+
+    <div style="font-family:serif;font-size:24px;font-weight:700;color:#f0eaff;margin-bottom:8px;">
+      预约体验课
+    </div>
+    <div style="font-size:14px;color:#9d8fbf;margin-bottom:32px;line-height:1.7;">
+      添加助理微信，发送「体验课」<br>即可预约 · 
+    </div>
+
+    <!-- 微信号大卡 -->
+    <div style="
+      background:rgba(192,132,252,.08);border:.5px solid rgba(192,132,252,.3);
+      border-radius:16px;padding:24px;margin-bottom:24px;
+    ">
+      <div style="font-size:13px;color:rgba(192,132,252,.6);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;">助理微信号</div>
+      <div style="font-size:36px;font-weight:700;color:#c084fc;letter-spacing:.06em;margin-bottom:8px;">18136061157</div>
+      <div style="font-size:13px;color:#9d8fbf;">长按复制 · 添加微信预约</div>
+    </div>
+
+    <!-- 标签 -->
+    <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:24px;">
+      <span style="font-size:12px;padding:5px 14px;border-radius:100px;border:.5px solid rgba(192,132,252,.35);color:#c084fc;background:rgba(192,132,252,.08);">声音诊断</span>
+      <span style="font-size:12px;padding:5px 14px;border-radius:100px;border:.5px solid rgba(96,165,250,.35);color:#7dd3fc;background:rgba(96,165,250,.07);">线上线下均可</span>
+      <span style="font-size:12px;padding:5px 14px;border-radius:100px;border:.5px solid rgba(244,114,182,.35);color:#f9a8d4;background:rgba(244,114,182,.07);">77老师亲授</span>
+    </div>
+
+    <div style="
+      background:#a855f7;color:#fff;
+      font-size:16px;font-weight:700;
+      padding:16px 0;border-radius:100px;cursor:pointer;
+      letter-spacing:.04em;
+    " onclick="
+      navigator.clipboard.writeText('18136061157').then(()=>{
+        this.textContent='✅ 微信号已复制！';
+        setTimeout(()=>this.textContent='复制微信号',2000);
+      }).catch(()=>{
+        this.textContent='18136061157';
+      });
+    ">复制微信号</div>
+
+    <div style="font-size:12px;color:#4a4460;margin-top:16px;">
+      苏州市姑苏区南门路711号萌果音乐工作室
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
