@@ -26,6 +26,7 @@
 }
 
 body{background:var(--bg);color:var(--text);font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;line-height:1.6;overflow-x:hidden}
+body.modal-open{overflow:hidden}
 
 /* ── UTILS ── */
 .serif{font-family:'Noto Serif SC',serif}
@@ -194,7 +195,6 @@ section{padding:100px 48px}
   gap:1px;background:rgba(255,255,255,.05);
   max-height:0;overflow:hidden;transition:max-height .35s ease;
 }
-.phase.open .phase-body{max-height:300px}
 .mod{padding:16px 18px;background:var(--bg)}
 .mod-name{font-size:12px;font-weight:500;color:var(--text);margin-bottom:7px}
 .mod-pts{list-style:none}
@@ -244,7 +244,15 @@ section{padding:100px 48px}
 .faq-icon{color:var(--text-dim);font-size:18px;transition:transform .3s}
 .faq-item.open .faq-icon{transform:rotate(45deg)}
 .faq-a{font-size:13px;color:var(--text-muted);line-height:1.8;padding:0 22px 18px;max-height:0;overflow:hidden;transition:max-height .3s ease}
-.faq-item.open .faq-a{max-height:200px}
+
+/* ── MODAL ── */
+.wechat-modal{
+  display:none;position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;padding:20px;
+}
+.wechat-modal.is-open{display:flex}
+.wechat-dialog{max-height:calc(100vh - 40px);overflow-y:auto}
 
 /* ── CTA FINAL ── */
 .cta-final{
@@ -284,8 +292,15 @@ footer{
   .hero{padding:0 20px}
   .pain-grid,.who-wrap,.how-grid,.t-grid{grid-template-columns:1fr}
   .phase-body{grid-template-columns:1fr}
+  .phase-head{align-items:flex-start;padding:16px}
+  .phase-week{display:none}
   .hero-meta{gap:16px}
   .hero-divider{display:none}
+  .who-wrap{gap:28px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 </style>
 </head>
@@ -302,7 +317,7 @@ footer{
     </div>
     <span class="nav-name">MG-SEVEN STUDIO</span>
   </div>
-  <a href="weixin://contacts/profile/18136061157" class="nav-cta" onclick="alert('请添加助理微信：18136061157 预约体验课 🎙');return false;">立即报名咨询 →</a>
+  <a href="#cta" class="nav-cta" data-open-wechat>立即报名咨询 →</a>
 </nav>
 
 <!-- HERO -->
@@ -317,10 +332,10 @@ footer{
     </h1>
     <p class="hero-sub">
       科学发声 × 流行经典曲目 × 声线审美重塑<br>
-      <strong>零基础成人专属</strong>，20 周从开不了口到唱出自己的味道
+      <strong>零基础成人专属</strong>，30 周从开不了口到唱出自己的味道
     </p>
     <div class="hero-actions">
-      <a href="#cta" class="btn-primary" onclick="document.getElementById('wechat-modal').style.display='flex';return false;">体验一节课</a>
+      <a href="#cta" class="btn-primary" data-open-wechat>体验一节课</a>
       <a href="#curriculum" class="btn-ghost">查看课程体系 ↓</a>
     </div>
     
@@ -403,7 +418,7 @@ footer{
       </div>
 
       <!-- 查看完整资历按钮 -->
-      <div style="margin-top:32px;">
+      <div style="grid-column:1/-1;">
         <a href="https://missmiaowl.github.io/mia-resume" target="_blank"
           style="display:inline-flex;align-items:center;gap:8px;
           font-size:14px;color:var(--purple);text-decoration:none;
@@ -428,7 +443,7 @@ footer{
     <div class="phases">
 
         <!-- LEVEL 1 -->
-        <div class="phase ph1 open" onclick="togglePhase(this)">
+        <div class="phase ph1 open" role="button" tabindex="0" aria-expanded="true">
           <div class="phase-head">
             <div class="phase-num" style="font-size:10px;font-weight:700;">L1</div>
             <div class="phase-info">
@@ -458,7 +473,7 @@ footer{
         </div>
 
         <!-- LEVEL 2 -->
-        <div class="phase ph2" onclick="togglePhase(this)">
+        <div class="phase ph2" role="button" tabindex="0" aria-expanded="false">
           <div class="phase-head">
             <div class="phase-num" style="font-size:10px;font-weight:700;">L2</div>
             <div class="phase-info">
@@ -489,7 +504,7 @@ footer{
         </div>
 
         <!-- LEVEL 3 -->
-        <div class="phase ph3" onclick="togglePhase(this)">
+        <div class="phase ph3" role="button" tabindex="0" aria-expanded="false">
           <div class="phase-head">
             <div class="phase-num" style="font-size:10px;font-weight:700;">L3</div>
             <div class="phase-info">
@@ -595,31 +610,31 @@ footer{
     <p class="sec-eyebrow">常见问题</p>
     <h2 class="sec-title">你可能想知道的</h2>
     <div class="faq-list">
-      <div class="faq-item open" onclick="toggleFaq(this)">
+      <div class="faq-item open" role="button" tabindex="0" aria-expanded="true">
         <div class="faq-q">完全零基础可以报名吗？<span class="faq-icon">+</span></div>
         <div class="faq-a">完全可以。MG-SEVEN STUDIO全能音乐人训练营就是为零基础成人设计的。我们从声音诊断开始，根据你当前的状态制定训练计划，不需要任何声乐基础。</div>
       </div>
-      <div class="faq-item open" onclick="toggleFaq(this)">
+      <div class="faq-item open" role="button" tabindex="0" aria-expanded="true">
         <div class="faq-q">线下工作室在哪里？<span class="faq-icon">+</span></div>
         <div class="faq-a">线下工作室位于 <strong>苏州市姑苏区南门路711号萌果音乐工作室</strong>，交通方便。欢迎苏州本地学员来工作室面授上课，外地学员可选择线上视频课程，效果完全一样。</div>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-item" role="button" tabindex="0" aria-expanded="false">
         <div class="faq-q">课程是线上还是线下？<span class="faq-icon">+</span></div>
         <div class="faq-a">线上线下均可，灵活选择。线下面授：苏州市姑苏区南门路711号萌果音乐工作室，1对1课程，沉浸式学习体验；线上课程：通过视频连线上课，随时录制回放，不受地域限制。两种方式效果一样好，根据你的情况选择即可。</div>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
-        <div class="faq-q">20 周后真的能看到变化吗？<span class="faq-icon">+</span></div>
-        <div class="faq-a">是的。绝大多数学员在 4–6 周内就能感受到明显变化。20 周完整课程结束后，你将有完整的演唱作品集，并建立起属于自己的声音风格。</div>
+      <div class="faq-item" role="button" tabindex="0" aria-expanded="false">
+        <div class="faq-q">30 周后真的能看到变化吗？<span class="faq-icon">+</span></div>
+        <div class="faq-a">是的。绝大多数学员在 4–6 周内就能感受到明显变化。30 周完整课程结束后，你将有完整的演唱作品集，并建立起属于自己的声音风格。</div>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-item" role="button" tabindex="0" aria-expanded="false">
         <div class="faq-q">可以选自己喜欢的歌练吗？<span class="faq-icon">+</span></div>
         <div class="faq-a">当然可以。我们会结合你喜欢的流行歌曲来进行技术训练，77老师会帮你分析这首歌的技术难点，制定针对性练习方案。</div>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-item" role="button" tabindex="0" aria-expanded="false">
         <div class="faq-q">每周上几节课？每节课多长时间？<span class="faq-icon">+</span></div>
         <div class="faq-a">每周一节课，每节课 45 分钟。课后77老师会提供练习指导，每天自主练习15–30分钟即可，不占用大量时间。</div>
       </div>
-      <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-item" role="button" tabindex="0" aria-expanded="false">
         <div class="faq-q">课程怎么报名？可以只报一个Level吗？<span class="faq-icon">+</span></div>
         <div class="faq-a">可以从任意Level开始，最低10周起报。完成一个Level后可以继续升级报名下一Level。也可以直接报名全套30周课程，一次完成从音乐新秀到音乐巨星的完整进阶。</div>
       </div>
@@ -634,14 +649,14 @@ footer{
   <div class="inner cta-inner">
     <p class="sec-eyebrow" style="text-align:center">现在开始</p>
     <h2 class="cta-title">你的声音，<em>等你来找它</em>。</h2>
-    <p class="cta-sub">先来一节体验课，感受一下不一样的学唱歌方式。<br>。</p>
+    <p class="cta-sub">先来一节体验课，感受一下不一样的学唱歌方式。</p>
     <div class="cta-badges">
       <span class="cbadge">🎙 声音诊断</span>
       <span class="cbadge">✦ 零基础友好</span>
       <span class="cbadge">📍 线上线下均可</span>
       <span class="cbadge">🐱 77老师亲授</span>
     </div>
-    <a href="#" class="btn-primary" style="font-size:16px;padding:16px 40px" onclick="document.getElementById('wechat-modal').style.display='flex';return false;">预约体验课 →</a>
+    <a href="#cta" class="btn-primary" style="font-size:16px;padding:16px 40px" data-open-wechat>预约体验课 →</a>
   </div>
 </section>
 
@@ -651,39 +666,20 @@ footer{
   <div class="footer-sub">MG-SEVEN STUDIO · 全能音乐人训练营 · © 2026</div>
 </footer>
 
-<script>
-function togglePhase(el){
-  el.classList.toggle('open');
-}
-function toggleFaq(el){
-  el.classList.toggle('open');
-}
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const id=a.getAttribute('href').slice(1);
-    const t=document.getElementById(id);
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
-  });
-});
-</script>
-
 <!-- 微信弹窗 -->
-<div id="wechat-modal" style="
-  display:none;position:fixed;inset:0;z-index:9999;
-  background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
-  align-items:center;justify-content:center;
-" onclick="if(event.target===this)this.style.display='none'">
-  <div style="
+<div id="wechat-modal" class="wechat-modal" role="dialog" aria-modal="true" aria-labelledby="wechat-title" aria-hidden="true">
+  <div class="wechat-dialog" style="
     background:#0e0e16;border:.5px solid rgba(192,132,252,.35);
     border-radius:24px;padding:48px 40px;max-width:420px;width:90%;
     text-align:center;position:relative;
     box-shadow:0 0 80px rgba(192,132,252,.15);
   ">
     <!-- 关闭按钮 -->
-    <div onclick="document.getElementById('wechat-modal').style.display='none'" style="
+    <button type="button" data-close-wechat aria-label="关闭弹窗" style="
       position:absolute;top:18px;right:22px;
       font-size:22px;color:rgba(240,234,255,.3);cursor:pointer;
-    ">✕</div>
+      border:0;background:none;
+    ">✕</button>
 
     <!-- 图标 -->
     <div style="
@@ -693,7 +689,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
       margin:0 auto 20px;font-size:28px;
     ">🎙</div>
 
-    <div style="font-family:serif;font-size:24px;font-weight:700;color:#f0eaff;margin-bottom:8px;">
+    <div id="wechat-title" style="font-family:serif;font-size:24px;font-weight:700;color:#f0eaff;margin-bottom:8px;">
       预约体验课
     </div>
     <div style="font-size:14px;color:#9d8fbf;margin-bottom:32px;line-height:1.7;">
@@ -717,25 +713,82 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
       <span style="font-size:12px;padding:5px 14px;border-radius:100px;border:.5px solid rgba(244,114,182,.35);color:#f9a8d4;background:rgba(244,114,182,.07);">77老师亲授</span>
     </div>
 
-    <div style="
+    <button type="button" id="copy-wechat" style="
       background:#a855f7;color:#fff;
       font-size:16px;font-weight:700;
       padding:16px 0;border-radius:100px;cursor:pointer;
-      letter-spacing:.04em;
-    " onclick="
-      navigator.clipboard.writeText('18136061157').then(()=>{
-        this.textContent='✅ 微信号已复制！';
-        setTimeout(()=>this.textContent='复制微信号',2000);
-      }).catch(()=>{
-        this.textContent='18136061157';
-      });
-    ">复制微信号</div>
+      letter-spacing:.04em;border:0;width:100%;
+    ">复制微信号</button>
 
     <div style="font-size:12px;color:#4a4460;margin-top:16px;">
       苏州市姑苏区南门路711号萌果音乐工作室
     </div>
   </div>
 </div>
+
+<script>
+const modal=document.getElementById('wechat-modal');
+let modalTrigger=null;
+
+function setExpandable(el,open){
+  const content=el.querySelector('.phase-body,.faq-a');
+  el.classList.toggle('open',open);
+  el.setAttribute('aria-expanded',String(open));
+  content.style.maxHeight=open?`${content.scrollHeight}px`:'0px';
+}
+
+document.querySelectorAll('.phase,.faq-item').forEach(el=>{
+  setExpandable(el,el.classList.contains('open'));
+  el.addEventListener('click',()=>setExpandable(el,!el.classList.contains('open')));
+  el.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();setExpandable(el,!el.classList.contains('open'))}
+  });
+});
+
+function openWechat(e){
+  e?.preventDefault();
+  modalTrigger=e?.currentTarget||null;
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+  modal.querySelector('[data-close-wechat]').focus();
+}
+function closeWechat(){
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+  modalTrigger?.focus();
+}
+document.querySelectorAll('[data-open-wechat]').forEach(el=>el.addEventListener('click',openWechat));
+modal.querySelector('[data-close-wechat]').addEventListener('click',closeWechat);
+modal.addEventListener('click',e=>{if(e.target===modal)closeWechat()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('is-open'))closeWechat()});
+
+document.querySelectorAll('a[href^="#"]:not([data-open-wechat])').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href').slice(1);
+    const target=document.getElementById(id);
+    if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+
+document.getElementById('copy-wechat').addEventListener('click',async function(){
+  try{
+    await navigator.clipboard.writeText('18136061157');
+    this.textContent='✅ 微信号已复制！';
+    setTimeout(()=>this.textContent='复制微信号',2000);
+  }catch{
+    this.textContent='请手动复制：18136061157';
+  }
+});
+
+window.addEventListener('resize',()=>{
+  document.querySelectorAll('.phase.open,.faq-item.open').forEach(el=>{
+    const content=el.querySelector('.phase-body,.faq-a');
+    content.style.maxHeight=`${content.scrollHeight}px`;
+  });
+});
+</script>
 
 </body>
 </html>
