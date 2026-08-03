@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://missmiaowl.github.io/mg-seven-studio/sitemap.xml

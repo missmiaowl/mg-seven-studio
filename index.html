@@ -1,9 +1,50 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MG-SEVEN STUDIO · 全能音乐人训练营 · 招生中</title>
+<meta name="description" content="MG-SEVEN STUDIO 全能音乐人训练营：秦柒柒 MIA（77老师）主理，面向零基础成人的流行演唱课程，提供苏州线下与线上 1 对 1 教学。">
+<meta name="theme-color" content="#09090f">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://missmiaowl.github.io/mg-seven-studio/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="MG-SEVEN STUDIO">
+<meta property="og:title" content="MG-SEVEN STUDIO · 全能音乐人训练营">
+<meta property="og:description" content="科学发声 × 流行经典曲目 × 声线审美重塑。零基础成人专属，线上线下均可。">
+<meta property="og:url" content="https://missmiaowl.github.io/mg-seven-studio/">
+<meta property="og:image" content="https://missmiaowl.github.io/mg-seven-studio/og-cover.png">
+<meta property="og:image:width" content="1731">
+<meta property="og:image:height" content="909">
+<meta property="og:image:alt" content="MG-SEVEN STUDIO 全能音乐人训练营">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MG-SEVEN STUDIO · 全能音乐人训练营">
+<meta name="twitter:description" content="找到你声音本来的美。零基础成人流行演唱课程，线上线下均可。">
+<meta name="twitter:image" content="https://missmiaowl.github.io/mg-seven-studio/og-cover.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicSchool",
+  "name": "MG-SEVEN STUDIO",
+  "description": "面向零基础成人的流行演唱与全能音乐人训练课程。",
+  "url": "https://missmiaowl.github.io/mg-seven-studio/",
+  "telephone": "+86-181-3606-1157",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "南门路711号萌果音乐工作室",
+    "addressLocality": "苏州市",
+    "addressRegion": "江苏省",
+    "addressCountry": "CN"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "秦柒柒 MIA"
+  }
+}
+</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap');
 
@@ -297,6 +338,9 @@ footer{
   .hero-meta{gap:16px}
   .hero-divider{display:none}
   .who-wrap{gap:28px}
+  .nav-name{font-size:13px}
+  .nav-cta{padding:7px 13px;font-size:12px}
+  .wechat-dialog{width:100%!important;padding:40px 22px 28px!important}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -762,7 +806,18 @@ function closeWechat(){
 document.querySelectorAll('[data-open-wechat]').forEach(el=>el.addEventListener('click',openWechat));
 modal.querySelector('[data-close-wechat]').addEventListener('click',closeWechat);
 modal.addEventListener('click',e=>{if(e.target===modal)closeWechat()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('is-open'))closeWechat()});
+document.addEventListener('keydown',e=>{
+  if(!modal.classList.contains('is-open'))return;
+  if(e.key==='Escape'){closeWechat();return}
+  if(e.key==='Tab'){
+    const focusable=[...modal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"])')]
+      .filter(el=>!el.disabled);
+    const first=focusable[0];
+    const last=focusable[focusable.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
+  }
+});
 
 document.querySelectorAll('a[href^="#"]:not([data-open-wechat])').forEach(a=>{
   a.addEventListener('click',e=>{
